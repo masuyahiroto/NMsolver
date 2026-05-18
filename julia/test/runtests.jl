@@ -87,4 +87,33 @@ using LinearAlgebra
         @test norm(F(x)) < 1e-9
     end
 
+    # 4〜10変数: F(x)[i] = x[i]^2 - i, 解: x[i] = sqrt(i)
+    @testset "$(n)変数連立方程式" for n in 4:10
+        F = v -> [v[i]^2 - Float64(i) for i in 1:n]
+        x0 = 2.0 * ones(n)
+        x, _, conv = newton_system(F, x0)
+        @test conv
+        @test norm(F(x)) < 1e-9
+        @test norm(x - [sqrt(Float64(i)) for i in 1:n]) < 1e-8
+    end
+
+    # 10変数: 三対角型連立方程式, 解: x[i] = 1
+    @testset "10変数三対角型連立方程式" begin
+        n = 10
+        c = vcat([2.0], fill(3.0, n-2), [2.0])
+        function F_tri(v)
+            r = zeros(n)
+            r[1] = v[1]^2 + v[2] - c[1]
+            for i in 2:n-1
+                r[i] = v[i-1] + v[i]^2 + v[i+1] - c[i]
+            end
+            r[n] = v[n-1] + v[n]^2 - c[n]
+            return r
+        end
+        x, _, conv = newton_system(F_tri, 0.5 * ones(n))
+        @test conv
+        @test norm(F_tri(x)) < 1e-9
+        @test norm(x - ones(n)) < 1e-8
+    end
+
 end
