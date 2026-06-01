@@ -219,8 +219,8 @@ end subroutine my_J
 | `Fx(n)` | `real(dp)` | $\mathbf{F}(\mathbf{x}_k)$：現在点での残差ベクトル |
 | `Jx(n,n)` | `real(dp)` | $J(\mathbf{x}_k)$：現在点でのヤコビアン行列 |
 | `dx(n)` | `real(dp)` | 更新量ベクトル $\Delta\mathbf{x}$（線形方程式の解） |
-| `norm_Fx` | `real(dp)` | $\|\mathbf{F}(\mathbf{x}_k)\|$：残差のノルム |
-| `norm_dx` | `real(dp)` | $\|\Delta\mathbf{x}_k\|$：更新量のノルム |
+| `norm_Fx` | `real(dp)` | $\lVert\mathbf{F}(\mathbf{x}_k)\rVert$：残差のノルム |
+| `norm_dx` | `real(dp)` | $\lVert\Delta\mathbf{x}_k\rVert$：更新量のノルム |
 | `ok` | `logical` | `lu_solve` の成否フラグ |
 | `i` | `integer` | 反復カウンタ |
 

@@ -76,8 +76,8 @@ $n$ 次元連立方程式 $F(\mathbf{x}) = \mathbf{0}$ を解く．
 
 | 関数 | 収束条件 |
 |------|---------|
-| `newton` | $|f(x_k)| < \text{tol}$ |
-| `newton_system` | $\|F(\mathbf{x}_k)\|_2 < \text{tol}$ |
+| `newton` | $\lvert f(x_k)\rvert < \text{tol}$ |
+| `newton_system` | $\lVert F(\mathbf{x}_k)\rVert_2 < \text{tol}$ |
 
 デフォルトの許容誤差は $\text{tol} = 10^{-10}$，最大反復回数は 100 回である．
 
