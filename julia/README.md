@@ -187,8 +187,8 @@ x, iter, converged = newton_system(F, x0)
 
 | 判定条件 | 説明 |
 |:---------|:-----|
-| $\|F(\mathbf{x}_k)\| < \varepsilon$ | 残差ノルムが閾値以下 |
-| $\|\alpha\,\Delta\mathbf{x}_k\| < \varepsilon$ | 更新量ノルムが閾値以下 |
+| $\lVert F(\mathbf{x}_k)\rVert < \varepsilon$ | 残差ノルムが閾値以下 |
+| $\lVert\alpha\,\Delta\mathbf{x}_k\rVert < \varepsilon$ | 更新量ノルムが閾値以下 |
 
 2 つの条件を **両方** 満たしたとき収束と判定する。
 

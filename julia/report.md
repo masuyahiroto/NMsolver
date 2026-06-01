@@ -61,7 +61,7 @@ NMsolver/julia/
 スカラー方程式 $f(x) = 0$ を解く．
 
 - `df` を省略した場合は中心差分による数値微分を使用する:
-  $f'(x) \approx \dfrac{f(x+h) - f(x-h)}{2h}, \quad h = \sqrt{\varepsilon_{\rm mach}} \max(1, |x|)$
+  $f'(x) \approx \dfrac{f(x+h) - f(x-h)}{2h}, \quad h = \sqrt{\varepsilon_{\mathrm{mach}}} \max(1, |x|)$
 - 返り値: `(x, iter, converged)`
 
 #### `newton_system(F, x0; J=nothing, tol=1e-10, maxiter=100)`
@@ -170,7 +170,7 @@ julia --project=. scripts/evaluate.jl
 
 ### 6.3 数値誤差
 
-数値微分による誤差は $O(h^2)$ であり，$h = \sqrt{\varepsilon_{\rm mach}}$ の選択により桁落ちと丸め誤差のバランスをとっている．解の誤差は収束判定閾値 $10^{-10}$ 付近に収まり，機械精度に近い精度が得られている．
+数値微分による誤差は $O(h^2)$ であり，$h = \sqrt{\varepsilon_{\mathrm{mach}}}$ の選択により桁落ちと丸め誤差のバランスをとっている．解の誤差は収束判定閾値 $10^{-10}$ 付近に収まり，機械精度に近い精度が得られている．
 
 ---
 

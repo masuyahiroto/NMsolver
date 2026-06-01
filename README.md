@@ -183,13 +183,13 @@ $$\frac{\partial F_i}{\partial x_j}(\mathbf{x}) \approx \frac{F_i(\mathbf{x} + h
 
 **刻み幅 $h$ の選択**：
 
-$$h = \sqrt{\varepsilon_\text{mach}} \cdot \max(1,\, |x_j|), \qquad \varepsilon_\text{mach} \approx 2.22 \times 10^{-16}$$
+$$h = \sqrt{\varepsilon_{\text{mach}}} \cdot \max(1,\, |x_j|), \qquad \varepsilon_{\text{mach}} \approx 2.22 \times 10^{-16}$$
 
-| 刻み幅の効果 | 小さすぎる $h$ | 大きすぎる $h$ | 最適 $h \sim \varepsilon_\text{mach}^{1/2}$ |
+| 刻み幅の効果 | 小さすぎる $h$ | 大きすぎる $h$ | 最適 $h \sim \varepsilon_{\text{mach}}^{1/2}$ |
 |:------------|:------------:|:-------------:|:-------------------------------------------:|
 | 打ち切り誤差 $O(h^2)$ | ← 小 | → 大 | バランス点 |
-| 丸め誤差 $O(\varepsilon_\text{mach}/h)$ | → 大 | ← 小 | バランス点 |
-| **合計誤差** | 大 | 大 | **最小 $\sim \varepsilon_\text{mach}^{1/2}$** |
+| 丸め誤差 $O(\varepsilon_{\text{mach}}/h)$ | → 大 | ← 小 | バランス点 |
+| **合計誤差** | 大 | 大 | **最小 $\sim \varepsilon_{\text{mach}}^{1/2}$** |
 
 > 前進差分 $[f(x+h)-f(x)]/h$ は $O(h)$ の精度しかないが，
 > 中心差分は $O(h^2)$ の精度を持ち，最適 $h$ では数値微分誤差が $\sim 10^{-8}$ 程度になる。
@@ -302,8 +302,8 @@ $$\|F(\mathbf{x}_k)\| < \varepsilon \quad \text{かつ} \quad \|\Delta\mathbf{x}
 
 | 判定基準 | 長所 | 短所 |
 |:--------|:-----|:-----|
-| 残差のみ $\|F\| < \varepsilon$ | シンプル | 更新量が大きくても収束と判定しうる |
-| 更新量のみ $\|\Delta\mathbf{x}\| < \varepsilon$ | 解の変化を直接見る | ヤコビアンが特異に近い場合に誤検出 |
+| 残差のみ $\lVert F\rVert < \varepsilon$ | シンプル | 更新量が大きくても収束と判定しうる |
+| 更新量のみ $\lVert\Delta\mathbf{x}\rVert < \varepsilon$ | 解の変化を直接見る | ヤコビアンが特異に近い場合に誤検出 |
 | **両方の AND**（本実装）| 誤検出を減らせる | やや保守的 |
 
 **倍精度での実用的な閾値**：
@@ -413,9 +413,9 @@ $$\kappa(J) = \|J\| \cdot \|J^{-1}\|$$
 | Fortran（解析的） | 0（厳密） | 機械イプシロン級（~10⁻¹⁵） |
 | Julia 解析的 | 0（厳密） | 機械イプシロン級（~10⁻¹⁵） |
 | Julia 自動微分（ForwardDiff） | 0（厳密） | 機械イプシロン級（~10⁻¹⁵） |
-| Julia 数値微分（中心差分） | $O(h^2)$，$h=\sqrt{\varepsilon_\text{mach}}$ | ~10⁻¹⁵（条件数良好時） |
+| Julia 数値微分（中心差分） | $O(h^2)$，$h=\sqrt{\varepsilon_{\text{mach}}}$ | ~10⁻¹⁵（条件数良好時） |
 
-> 中心差分の刻み幅 $h = \sqrt{\varepsilon_\text{mach}} \cdot \max(1, |x|)$ を採用しているため，
+> 中心差分の刻み幅 $h = \sqrt{\varepsilon_{\text{mach}}} \cdot \max(1, |x|)$ を採用しているため，
 > 丸め誤差と打ち切り誤差のバランスが最適化され，解析的手法と同等の精度が得られる。
 
 #### Julia 版 実測精度データ（`julia/results/comparison.csv` より）
