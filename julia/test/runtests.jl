@@ -75,6 +75,36 @@ using LinearAlgebra
         @test iter < 20
     end
 
+    @testset "ForwardDiff による自動微分" begin
+        f = x -> x^2 - 2
+        x, _, conv = newton(f, 1.0; derivative=:forwarddiff)
+        @test conv
+        @test abs(x - sqrt(2)) < 1e-10
+
+        F = v -> [v[1]^2 + v[2]^2 - 1, v[1] - v[2]]
+        x2, _, conv2 = newton_system(F, [1.0, 0.5]; jacobian=:forwarddiff)
+        @test conv2
+        @test norm(F(x2)) < 1e-10
+        @test norm(x2 - [1/sqrt(2), 1/sqrt(2)]) < 1e-8
+    end
+
+    @testset "ダンピングと収束履歴" begin
+        f = x -> x^2 - 2
+        x, iter, conv, history = newton(f, 1.0; damping=true, return_history=true)
+        @test conv
+        @test abs(x - sqrt(2)) < 1e-8
+        @test length(history) == iter
+        @test all(h -> 0 < h.alpha <= 1, history)
+
+        F = v -> [v[1]^2 + v[2]^2 - 1, v[1] - v[2]]
+        x2, iter2, conv2, history2 = newton_system(F, [1.0, 0.5];
+            damping=true, return_history=true)
+        @test conv2
+        @test norm(F(x2)) < 1e-10
+        @test length(history2) == iter2
+        @test all(h -> 0 < h.alpha <= 1, history2)
+    end
+
     @testset "3変数連立方程式" begin
         # x + y + z = 6, x^2 + y^2 + z^2 = 14, x*y*z = 6 → (1, 2, 3)
         F = v -> [
