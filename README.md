@@ -1,3 +1,14 @@
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.min.js">
+</script>
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+ tex2jax: {
+ inlineMath: [['$', '$'] ],
+ displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+ }
+ });
+</script>
+
 # NMsolver
 
 ニュートン法を用いて非線形方程式を解くソルバーです。
@@ -98,13 +109,13 @@ $$\boxed{x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}}$$
 
 #### 局所 2 次収束定理
 
-$x^*$ を $f(x^*) = 0$ の単純根（$f'(x^*) \neq 0$）とする。
-$f$ が $x^*$ の近傍で $C^2$ 級であれば，初期値 $x_0$ が $x^*$ に十分近い場合，
+$x^{\ast}$を $f(x^{\ast}) = 0$ の単純根（$f'(x^{\ast}) \neq 0$）とする。
+$f$ が $x^{\ast}$ の近傍で $C^2$ 級であれば，初期値 $x_0$ が $x^{\ast}$ に十分近い場合，
 ニュートン法は **2 次収束** する：
 
-$$\lvert x_{k+1} - x^*\rvert \leq C\,\lvert x_k - x^*\rvert^2, \qquad C = \frac{\lvert f''(x^*)\rvert}{2\lvert f'(x^*)\rvert}$$
+$$\lvert x_{k+1} - x^{\ast}\rvert \leq C\,\lvert x_k - x^{\ast}\rvert^2, \qquad C = \frac{\lvert f''(x^{\ast})\rvert}{2\lvert f'(x^{\ast})\rvert}$$
 
-ここで $e_k = \lvert x_k - x^*\rvert$ を誤差とすると，$e_{k+1} \approx C\,e_k^2$ が成り立つ。
+ここで $e_k = \lvert x_k - x^{\ast}\rvert$ を誤差とすると，$e_{k+1} \approx C\,e_k^2$ が成り立つ。
 
 | 反復回数 | 有効桁数の目安（$C \approx 1$ のとき） |
 |:--------:|:-----------------------------------:|
@@ -163,11 +174,11 @@ $$\begin{pmatrix} \partial_{x_1}F_1 & \partial_{x_2}F_1 \\ \partial_{x_1}F_2 & \
 
 #### 多変数の収束性
 
-1 変数と同様に，$\mathbf{x}^*$ の近傍で 2 次収束が成立する：
+1 変数と同様に，$\mathbf{x}^{\ast}$ の近傍で 2 次収束が成立する：
 
-$$\lVert\mathbf{x}_{k+1} - \mathbf{x}^*\rVert \leq C\,\lVert\mathbf{x}_k - \mathbf{x}^*\rVert^2$$
+$$\lVert\mathbf{x}_{k+1} - \mathbf{x}^{\ast}\rVert \leq C\,\lVert\mathbf{x}_k - \mathbf{x}^{\ast}\rVert^2$$
 
-条件：$F(\mathbf{x}^*) = \mathbf{0}$，$J(\mathbf{x}^*)$ が正則（$\det J \neq 0$），$F$ が $C^2$ 級。
+条件：$F(\mathbf{x}^{\ast}) = \mathbf{0}$，$J(\mathbf{x}^{\ast})$ が正則（$\det J \neq 0$），$F$ が $C^2$ 級。
 
 ---
 
