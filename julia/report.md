@@ -14,11 +14,11 @@
 
 $$x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}$$
 
-初期値 $x_0$ を十分に解の近くに取れば，ニュートン法は **2次収束** する．すなわち，誤差 $e_k = |x_k - x^*|$ に対して
+初期値 $x_0$ を十分に解の近くに取れば，ニュートン法は **2次収束** する．すなわち，誤差 $e_k = |x_k - x^{\ast}|$ に対して
 
 $$e_{k+1} \approx C \, e_k^2$$
 
-が成り立つ（$C$ は定数，$x^*$ は真の解）．
+が成り立つ（$C$ は定数，$x^{\ast}$ は真の解）．
 
 ### 2.2 連立方程式（多変数）
 
@@ -61,7 +61,7 @@ NMsolver/julia/
 スカラー方程式 $f(x) = 0$ を解く．
 
 - `df` を省略した場合は中心差分による数値微分を使用する:
-  $f'(x) \approx \dfrac{f(x+h) - f(x-h)}{2h}, \quad h = \sqrt{\varepsilon_{\rm mach}} \max(1, |x|)$
+  $f'(x) \approx \dfrac{f(x+h) - f(x-h)}{2h}, \quad h = \sqrt{\varepsilon_{\mathrm{mach}}} \max(1, |x|)$
 - 返り値: `(x, iter, converged)`
 
 #### `newton_system(F, x0; J=nothing, tol=1e-10, maxiter=100)`
@@ -76,8 +76,8 @@ $n$ 次元連立方程式 $F(\mathbf{x}) = \mathbf{0}$ を解く．
 
 | 関数 | 収束条件 |
 |------|---------|
-| `newton` | $|f(x_k)| < \text{tol}$ |
-| `newton_system` | $\|F(\mathbf{x}_k)\|_2 < \text{tol}$ |
+| `newton` | $\lvert f(x_k)\rvert < \text{tol}$ |
+| `newton_system` | $\lVert F(\mathbf{x}_k)\rVert_2 < \text{tol}$ |
 
 デフォルトの許容誤差は $\text{tol} = 10^{-10}$，最大反復回数は 100 回である．
 
@@ -170,7 +170,7 @@ julia --project=. scripts/evaluate.jl
 
 ### 6.3 数値誤差
 
-数値微分による誤差は $O(h^2)$ であり，$h = \sqrt{\varepsilon_{\rm mach}}$ の選択により桁落ちと丸め誤差のバランスをとっている．解の誤差は収束判定閾値 $10^{-10}$ 付近に収まり，機械精度に近い精度が得られている．
+数値微分による誤差は $O(h^2)$ であり，$h = \sqrt{\varepsilon_{\mathrm{mach}}}$ の選択により桁落ちと丸め誤差のバランスをとっている．解の誤差は収束判定閾値 $10^{-10}$ 付近に収まり，機械精度に近い精度が得られている．
 
 ---
 
